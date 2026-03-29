@@ -1,0 +1,49 @@
+services:
+
+  db:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB:       amor
+      POSTGRES_USER:     amor
+      POSTGRES_PASSWORD: amor_local_pass
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./docker/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U amor -d amor"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  postgrest:
+    image: postgrest/postgrest:v12.2.0
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      PGRST_DB_URI:        postgres://authenticator:postgrest_pass@db:5432/amor
+      PGRST_DB_SCHEMA:     api
+      PGRST_DB_ANON_ROLE:  web_anon
+      PGRST_JWT_SECRET:    "precio-del-amor-local-secret-key-32chars"
+      PGRST_DB_POOL:       10
+      PGRST_SERVER_PORT:   3000
+    ports:
+      - "3000:3000"
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        VITE_API_URL: http://localhost:3000
+        VITE_API_KEY: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoid2ViX2Fub24ifQ.IIu6Hgh990TJGBVMWsuMk70dBKxJBlqdO3pQCl4PXms"
+    restart: unless-stopped
+    depends_on:
+      - postgrest
+    ports:
+      - "5173:5173"
+
+volumes:
+  postgres_data:
