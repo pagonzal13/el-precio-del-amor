@@ -39,6 +39,10 @@ export function useBalance() {
     if (!currentDebtor || currentAmount < 0.01) return
     setSettling(true)
 
+    // El deudor paga al acreedor: who_paid = deudor, for_whom = [acreedor]
+    // Así la lógica de balance lo detecta como transferencia correcta
+    const creditor = currentDebtor === 'Capa' ? 'Pau' : 'Capa'
+
     const { error } = await supabase.from('expenses').insert({
       purpose: 'Pago de deudas pendientes',
       nickname: null,
@@ -46,7 +50,7 @@ export function useBalance() {
       currency: 'EUR',
       who_paid: currentDebtor,
       split_type: 'solo',
-      for_whom: [currentDebtor],
+      for_whom: [creditor],
       split_amounts: [currentAmount],
       category: 'Otros',
       date: new Date().toISOString(),

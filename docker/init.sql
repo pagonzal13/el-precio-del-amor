@@ -28,6 +28,7 @@ CREATE TABLE IF NOT EXISTS api.expenses (
                     'Ocio, cultura, entradas...',
                     'Viajes',
                     'Hogar',
+                    'Transporte',
                     'Otros'
                   )),
 

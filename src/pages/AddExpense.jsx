@@ -9,6 +9,7 @@ const CATEGORIES = [
   { value: 'Ocio, cultura, entradas...', emoji: '🎭' },
   { value: 'Viajes', emoji: '✈️' },
   { value: 'Hogar', emoji: '🏠' },
+  { value: 'Transporte', emoji: '🚕' },
   { value: 'Otros', emoji: '💫' },
 ]
 

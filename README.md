@@ -36,17 +36,6 @@ Con los contenedores corriendo, abre **otra terminal** y ejecuta:
 ```bash
 # Instala las dependencias si aún no lo has hecho
 npm install
-
-# Importa los 850 gastos históricos de SettleUp
-node seed.mjs
-```
-
-Verás:
-```
-🔌 Conectando a: http://localhost:3000
-📦 Importando 850 gastos...
-✅ 850/850 gastos importados
-🎉 ¡Datos históricos importados con éxito!
 ```
 
 ### Uso diario

@@ -4,12 +4,13 @@ import { supabase } from '../lib/supabase'
 import { Search, Download } from 'lucide-react'
 import './History.css'
 
-const CATEGORIES = ['Todas', 'Bebidas y comidas', 'Ocio, cultura, entradas...', 'Viajes', 'Hogar', 'Otros']
+const CATEGORIES = ['Todas', 'Bebidas y comidas', 'Ocio, cultura, entradas...', 'Viajes', 'Hogar', 'Transporte','Otros']
 const CAT_EMOJI = {
   'Bebidas y comidas': '🍽️',
   'Ocio, cultura, entradas...': '🎭',
   'Viajes': '✈️',
   'Hogar': '🏠',
+  'Transporte': '🚕',
   'Otros': '💫',
 }
 const PAGE_SIZE = 40

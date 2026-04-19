@@ -12,6 +12,7 @@ const CAT_COLORS = {
   'Ocio, cultura, entradas...': '#a78bfa',
   'Viajes': '#60a5fa',
   'Hogar': '#34d399',
+  'Transporte': '#d3c834',
   'Otros': '#94a3b8',
 }
 

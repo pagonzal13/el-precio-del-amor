@@ -226,6 +226,7 @@ function getCatEmoji(cat) {
     'Viajes': '✈️',
     'Ocio, cultura, entradas...': '🎭',
     'Hogar': '🏠',
+    'Transporte': '🚕',
     'Otros': '💫',
   }
   return map[cat] || '💫'
